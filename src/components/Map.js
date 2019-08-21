@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 
 const mapData = {
     center: [55.751574, 37.573856],
-    zoom: 9,
+	zoom: 9,
+	controls: ['zoomControl', 'fullscreenControl']
 };
+const { ymaps } = window;
 
 class Map extends Component {
     constructor(props) {
@@ -21,9 +23,7 @@ class Map extends Component {
 	}
 	
 	initMap() {
-		const { ymaps } = window;
-
-        ymaps.ready(() => {
+		ymaps.ready(() => {
 			this.yMap = new ymaps.Map("map", mapData);
 			this.setState({
 				ready: true
@@ -32,7 +32,6 @@ class Map extends Component {
 	}
 
 	createMarks() {
-		const { ymaps } = window;
 		let coords = this.props.coords;
 		if (!coords) return;
 		
@@ -51,7 +50,10 @@ class Map extends Component {
 				this.props.updateCoords(newCoords, index);
 			})
 		});	
-		
+
+		if (coords.length === 1) return;
+		let line = new ymaps.Polyline(coords);	
+		this.yMap.geoObjects.add(line);	
 	}
 
 	render() {
