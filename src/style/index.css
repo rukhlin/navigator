@@ -12,10 +12,21 @@ code {
     monospace;
 }
 
-.app {
+/* .app {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+} */
+
+.app-places {
+  float: left;
+  width: 28%;
+  margin: 0 1%;
+}
+
+.app-map {
+  float: left;
+  width: 70%;
 }
 
 .place {

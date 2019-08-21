@@ -8,21 +8,22 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      'places': cities
+      places: cities
     };
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleSearch(place) {
     let newPlace = {
-        'name': place.name,
-        'description': place.description,
-        'pos': place.Point.pos
+        name: place.name,
+        description: place.description,
+        pos: place.Point.pos
     }
     let oldList = this.state.places;
     let newList = oldList.concat(newPlace);
     this.setState({
-        'places': newList
+        places: newList
     });
     console.log(this.state.places);
   }
@@ -47,15 +48,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app">
-          <div className="places">
+      <div className='app'>
+          <div className='app-places'>
             <Places 
               handleSearch={this.handleSearch}
-              delete={this.handleDelete.bind(this)}
+              delete={this.handleDelete}
               places={this.state.places}
               />
           </div>
-          <div className="map">
+          <div className='app-map'>
             <Map 
               coords={this.getCoords()}/>
           </div>

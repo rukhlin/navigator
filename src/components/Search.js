@@ -7,7 +7,7 @@ class Search extends Component {
     constructor() {
         super();
         this.state = {
-            'placeValue': ''
+            placeValue: ''
         }
         this.handleEnterPress = this.handleEnterPress.bind(this);
         this.updateInputValue = this.updateInputValue.bind(this);
@@ -15,7 +15,7 @@ class Search extends Component {
 
     updateInputValue(event) {
         this.setState({
-            'placeValue': event.target.value
+            placeValue: event.target.value
         });
     }
 
