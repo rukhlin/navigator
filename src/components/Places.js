@@ -7,10 +7,6 @@ class Places extends Component {
         console.log(place.name + ' ' + place.description + ': ' + place.pos);
     }
 
-    handleDelete(event) {
-        console.log(this);
-    }
-
     render() {
         const newCities = this.props.places.map((city, index) => 
             <Place 
@@ -23,10 +19,12 @@ class Places extends Component {
         )
 
         return (
-            <div>
-                <h1>places</h1>
-                <Search addNewPlace={this.props.handleSearch}/>
-                {newCities}
+            <div className='places'>
+                <div className='places-header'>
+					<h1>places</h1>
+					<Search addNewPlace={this.props.handleSearch}/>
+				</div>
+                <div className='places-list'>{newCities}</div>
             </div>
         )
 	}

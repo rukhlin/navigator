@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 const mapData = {
     center: [55.751574, 37.573856],
-    zoom: 8,
+    zoom: 9,
 };
 
 class Map extends Component {
@@ -36,10 +36,20 @@ class Map extends Component {
 		let coords = this.props.coords;
 		if (!coords) return;
 		
-		coords.forEach((item) => {
-			this.yMap.geoObjects.add(new ymaps.Placemark(item, {
-				balloonContent: 'цвет <strong>воды пляжа бонди</strong>'
-			}));
+		this.yMap.geoObjects.removeAll();
+
+		coords.forEach((item, index) => {
+			let place = this.props.places[index];
+			let placeMark = new ymaps.Placemark(item, {
+				balloonContent: place.description + ', ' + place.name 
+			},
+			{ draggable: true });
+			this.yMap.geoObjects.add(placeMark);
+
+			placeMark.events.add('dragend', () => {
+				let newCoords = placeMark.geometry.getCoordinates();
+				this.props.updateCoords(newCoords, index);
+			})
 		});	
 		
 	}

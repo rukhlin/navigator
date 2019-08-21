@@ -29,12 +29,21 @@ code {
   width: 70%;
 }
 
+.places-list {
+  max-height: 400px;
+  overflow-y: auto;  
+}
+
+.places h1 {
+  margin-top: 0;
+}
+
 .place {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border: 1px solid blanchedalmond;
-  margin: 10px 0 10px 0;
+  margin: 10px 0;
 }
 
 .place p {
@@ -44,4 +53,14 @@ code {
 .place-info {
   display: flex;
   flex-direction: column;
+  width: 80%;
+}
+
+.place-del p {
+  font-size: 20px;
+  color: rosybrown;
+}
+
+.place:hover {
+  cursor: pointer;
 }

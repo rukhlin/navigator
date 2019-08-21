@@ -12,6 +12,7 @@ class App extends Component {
     };
     this.handleSearch = this.handleSearch.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.updateCoords = this.updateCoords.bind(this);
   }
 
   handleSearch(place) {
@@ -46,6 +47,12 @@ class App extends Component {
     return coordinates;
   }
 
+  updateCoords(newCoords, index) {
+    let places = this.state.places; 
+    places[index].pos = newCoords.reverse().join(' ');
+    this.setState({places});
+  }
+
   render() {
     return (
       <div className='app'>
@@ -58,7 +65,10 @@ class App extends Component {
           </div>
           <div className='app-map'>
             <Map 
-              coords={this.getCoords()}/>
+              coords={this.getCoords()}
+              places={this.state.places}
+              updateCoords={this.updateCoords}
+              />
           </div>
       </div>
     );
