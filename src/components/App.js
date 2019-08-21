@@ -8,7 +8,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      places: cities
+      places: cities,
+      center: [55.75, 37.57]
     };
     this.handleSearch = this.handleSearch.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -24,7 +25,8 @@ class App extends Component {
     let oldList = this.state.places;
     let newList = oldList.concat(newPlace);
     this.setState({
-        places: newList
+        places: newList,
+        center: place.Point.pos
     });
     console.log(this.state.places);
   }
@@ -68,6 +70,7 @@ class App extends Component {
               coords={this.getCoords()}
               places={this.state.places}
               updateCoords={this.updateCoords}
+              center={this.state.center}
               />
           </div>
       </div>

@@ -21,7 +21,7 @@ class Places extends Component {
         return (
             <div className='places'>
                 <div className='places-header'>
-					<h1>places</h1>
+					<h4>Новая точка маршрута:</h4>
 					<Search addNewPlace={this.props.handleSearch}/>
 				</div>
                 <div className='places-list'>{newCities}</div>

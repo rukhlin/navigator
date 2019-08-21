@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 const mapData = {
     center: [55.751574, 37.573856],
-	zoom: 9,
+	zoom: 7,
 	controls: ['zoomControl', 'fullscreenControl']
 };
 const { ymaps } = window;
@@ -11,20 +11,25 @@ class Map extends Component {
     constructor(props) {
 		super(props);
 		this.state = {
-			ready: false
+			ready: false,
+			center: this.props.center,
+			lastCount: 0
 		};
 		this.createMarks = this.createMarks.bind(this);
 		
 		this.initMap();
 	};
 
-	componentDidMount() {
-
+	componentDidUpdate(prevProps){
+		//Центрирование новой точки
+		if (prevProps.coords.length < this.props.coords.length) {
+			this.yMap.setCenter(this.props.coords[this.props.coords.length - 1]);
+		}
 	}
 	
 	initMap() {
 		ymaps.ready(() => {
-			this.yMap = new ymaps.Map("map", mapData);
+			this.yMap = new ymaps.Map('map', mapData);
 			this.setState({
 				ready: true
 			});
@@ -64,7 +69,7 @@ class Map extends Component {
 		if (this.state.ready) this.createMarks();
 
 		return (
-			<div id="map" style={style}></div>
+			<div id='map' style={style}></div>
 		);
 	}
 }

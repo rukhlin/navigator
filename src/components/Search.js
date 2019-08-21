@@ -7,7 +7,7 @@ class Search extends Component {
     constructor() {
         super();
         this.state = {
-            placeValue: ''
+            placeValue: '',
         }
         this.handleEnterPress = this.handleEnterPress.bind(this);
         this.updateInputValue = this.updateInputValue.bind(this);
@@ -33,7 +33,10 @@ class Search extends Component {
                 let arrResp = json.response.GeoObjectCollection.featureMember;
                 if (arrResp.length) {
                     this.props.addNewPlace(arrResp[0].GeoObject);
-                    console.log(this.state.placeValue)
+					console.log(this.state.placeValue);
+					this.setState({
+						placeValue: ''
+					});
                 } else {
                     alert('Уточните условия поиска');
                 }

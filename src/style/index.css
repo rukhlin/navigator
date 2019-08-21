@@ -20,8 +20,8 @@ code {
 
 .app-places {
   float: left;
-  width: 28%;
-  margin: 0 1%;
+  width: 26%;
+  margin: 0 2%;
 }
 
 .app-map {
@@ -32,10 +32,6 @@ code {
 .places-list {
   max-height: 400px;
   overflow-y: auto;  
-}
-
-.places h1 {
-  margin-top: 0;
 }
 
 .place {
