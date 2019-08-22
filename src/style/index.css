@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #faf9f7;
 }
 
 code {
@@ -12,34 +13,42 @@ code {
     monospace;
 }
 
-/* .app {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-} */
-
 .app-places {
   float: left;
   width: 26%;
   margin: 0 2%;
+  background-color: light;
 }
 
 .app-map {
-  float: left;
+  float: right;
   width: 70%;
+}
+
+.places h4 { 
+  margin: 10px 0;
+}
+
+.places-header input{
+  width: 99%;
+  height: 20px;
+  outline: none;
 }
 
 .places-list {
   max-height: 400px;
-  overflow-y: auto;  
+  overflow-y: auto;
+  margin-top: 5px;
 }
 
 .place {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid blanchedalmond;
-  margin: 10px 0;
+  border: 1px solid rgba(255,227,119,.7);
+  padding: 5px;
+  font-size: 14px;
+  margin: 5px 0;
 }
 
 .place p {
@@ -55,8 +64,4 @@ code {
 .place-del p {
   font-size: 20px;
   color: rosybrown;
-}
-
-.place:hover {
-  cursor: pointer;
 }

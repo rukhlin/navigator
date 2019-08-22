@@ -29,7 +29,6 @@ class App extends Component {
         places: newList,
         center: place.Point.pos
     });
-    console.log(this.state.places);
   }
 
   handleDelete(index) {
@@ -54,9 +53,15 @@ class App extends Component {
     return coordinates;
   }
 
-  updateCoords(newCoords, index) {
+  updateCoords(newCoords, index, name, desc) {
     let places = this.state.places; 
-    places[index].pos = newCoords.reverse().join(' ');
+    if (!name || !desc) {
+      places[index].pos = newCoords.reverse().join(' ');
+    } else {
+      places[index].pos = newCoords.reverse().join(' ');
+      places[index].name = name;
+      places[index].description = desc;
+    }
     this.setState({places});
   }
 

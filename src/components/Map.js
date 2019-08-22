@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
+import { mapData, URL } from '../model/const';
 
-const mapData = {
-    center: [55.751574, 37.573856],
-	zoom: 7,
-	controls: ['zoomControl', 'fullscreenControl']
-};
 const { ymaps } = window;
 
 class Map extends Component {
@@ -22,8 +18,9 @@ class Map extends Component {
 
 	componentDidUpdate(prevProps){
 		//Центрирование новой точки
-		if (prevProps.coords.length < this.props.coords.length) {
-			this.yMap.setCenter(this.props.coords[this.props.coords.length - 1]);
+		let coords = this.props.coords;
+		if (prevProps.coords.length < coords.length) {
+			this.yMap.setCenter(coords[coords.length - 1]);
 		}
 	}
 	
@@ -52,7 +49,23 @@ class Map extends Component {
 
 			placeMark.events.add('dragend', () => {
 				let newCoords = placeMark.geometry.getCoordinates();
-				this.props.updateCoords(newCoords, index);
+					   
+				//reverse() - широта и долгота приходят в другом порядке
+				fetch(URL + (newCoords.reverse().toString())).then(res => 
+					res.json()).then(json => {
+						let arrResp = json.response.GeoObjectCollection.featureMember;
+						if (arrResp.length) {
+							let newPlace = arrResp[0].GeoObject;
+							this.props.updateCoords(
+								newCoords.reverse(), 
+								index, 
+								newPlace.name, 
+								newPlace.description
+							);
+						} else {
+							this.props.updateCoords(newCoords, index);
+						}					
+				});
 			})
 		});	
 

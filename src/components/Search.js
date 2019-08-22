@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-
-const key = 'caf2c7ec-a386-4a0d-892a-cb30c2841534';
-const URL = 'https://geocode-maps.yandex.ru/1.x/?apikey=' + key + '&format=json&geocode=';
+import { URL } from '../model/const';
 
 class Search extends Component {
     constructor() {
@@ -29,11 +27,9 @@ class Search extends Component {
     getLatLon(value) {        
         fetch(URL + encodeURIComponent(value)).then(res => 
             res.json()).then(json => {
-                console.log(json)
                 let arrResp = json.response.GeoObjectCollection.featureMember;
                 if (arrResp.length) {
                     this.props.addNewPlace(arrResp[0].GeoObject);
-					console.log(this.state.placeValue);
 					this.setState({
 						placeValue: ''
 					});
