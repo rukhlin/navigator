@@ -2,13 +2,12 @@ import React, {Component} from 'react';
 import Places from './Places';
 import Map from './Map';
 import '../style/index.css';
-import cities from '../model/cities';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      places: cities,
+      places: [],
       center: [55.75, 37.57]
     };
     this.handleSearch = this.handleSearch.bind(this);

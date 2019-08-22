@@ -52,26 +52,26 @@ class Places extends Component {
         )
 
         return (
-            <div>
-                <div className='places'>
-                     <div className='places-header'>
-             			<h4>Новая точка маршрута:</h4>
-             			<Search addNewPlace={this.props.handleSearch}/>
-             	    </div>
+            <div className='places'>
+                <div className='places-header'>
+                    <h4>Новая точка маршрута:</h4>
+                    <Search addNewPlace={this.props.handleSearch}/>
                 </div>
-                <DragDropContext onDragEnd={this.onDragEnd}>
-                    <Droppable droppableId="droppable">
-                        {(provided, snapshot) => (
-                        <div
-                            {...provided.droppableProps}
-                            ref={provided.innerRef}
-                            >
-                            {newCities}
-                            {provided.placeholder}
-                        </div>
-                        )}
-                    </Droppable>
-                </DragDropContext>
+                <div className='places-list'>
+                    <DragDropContext onDragEnd={this.onDragEnd}>
+                        <Droppable droppableId="droppable">
+                            {(provided, snapshot) => (
+                            <div
+                                {...provided.droppableProps}
+                                ref={provided.innerRef}
+                                >
+                                {newCities}
+                                {provided.placeholder}
+                            </div>
+                            )}
+                        </Droppable>
+                    </DragDropContext>
+                </div>
             </div>
           );
 	}

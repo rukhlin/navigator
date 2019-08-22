@@ -27,14 +27,19 @@ class Search extends Component {
     getLatLon(value) {        
         fetch(URL + encodeURIComponent(value)).then(res => 
             res.json()).then(json => {
-                let arrResp = json.response.GeoObjectCollection.featureMember;
-                if (arrResp.length) {
-                    this.props.addNewPlace(arrResp[0].GeoObject);
-					this.setState({
-						placeValue: ''
-					});
-                } else {
-                    alert('Уточните условия поиска');
+                try {
+                    let arrResp = json.response.GeoObjectCollection.featureMember;
+                    if (arrResp.length) {
+                        this.props.addNewPlace(arrResp[0].GeoObject);
+                        this.setState({
+                            placeValue: ''
+                        });
+                    } else {
+                        alert('Уточните условия поиска');
+                    }
+                }
+                catch(e) {
+                    console.log(e);
                 }
         });
     }
