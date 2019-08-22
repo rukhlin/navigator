@@ -13,6 +13,7 @@ class App extends Component {
     };
     this.handleSearch = this.handleSearch.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleDrag = this.handleDrag.bind(this);
     this.updateCoords = this.updateCoords.bind(this);
   }
 
@@ -34,6 +35,10 @@ class App extends Component {
   handleDelete(index) {
     let places = this.state.places;
     places.splice(index, 1) 
+    this.setState({places});
+  }
+
+  handleDrag(places) {
     this.setState({places});
   }
 
@@ -63,6 +68,7 @@ class App extends Component {
               handleSearch={this.handleSearch}
               delete={this.handleDelete}
               places={this.state.places}
+              drag={this.handleDrag}
               />
           </div>
           <div className='app-map'>
